@@ -11,66 +11,72 @@ datasource db {
 }
 
 model Blog {
-  id Int @id @default(autoincrement())
-  topic String?
-  genre String?
+  id       Int     @id @default(autoincrement())
+  topic    String?
+  genre    String?
   fullText String?
-  image String?
+  image    String?
 }
 
 model Advertisment {
-   id Int @id @default(autoincrement())
-   title String?
-   miniTitle String?
-   date String?
-   location String?
-   description String?
-   link String?
-   displayOnHomePage Boolean?
-   image String?
+  id                Int      @id @default(autoincrement())
+  title             String?
+  miniTitle         String?
+  date              String?
+  location          String?
+  description       String?
+  link              String?
+  displayOnHomePage Boolean?
+  image             String?
 }
 
 model Event {
-  id Int @id @default(autoincrement())
-  title String?
-  subtitle String?
-  date String?
+  id          Int     @id @default(autoincrement())
+  title       String?
+  subtitle    String?
+  date        String?
   description String?
 }
 
-model  GalleryImages{
-  id Int @id @default(autoincrement())
-  imageName String?
-  src String
-  category String
+model GalleryImages {
+  id         Int       @id @default(autoincrement())
+  imageName  String?
+  src        String
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
 }
 
-model KidsToSponsor{
-  id Int @id @default(autoincrement())
-  name String?
-  gender String?
-  age Int?
-  status String?
-  class String?
-  city String?
-  subCity String?
-  kebele String?
+model Category {
+  id         Int             @id @default(autoincrement())
+  name       String?         @unique
+  imagesList GalleryImages[]
+}
+
+model KidsToSponsor {
+  id            Int     @id @default(autoincrement())
+  name          String?
+  gender        String?
+  age           Int?
+  status        String?
+  class         String?
+  city          String?
+  subCity       String?
+  kebele        String?
   displayOnHome Boolean @default(false)
-  image String?
-  
+  image         String?
 }
 
-model TeamMembers{
-  id Int @id @default(autoincrement())
-  name String?
-  position String?
+model TeamMembers {
+  id          Int     @id @default(autoincrement())
+  name        String?
+  position    String?
   description String?
-  image String?
+  image       String?
 }
 
 model Testimonies {
-  id Int @id @default(autoincrement())
-  name String?
+  id       Int     @id @default(autoincrement())
+  name     String?
   position String?
   fullText String?
 }
