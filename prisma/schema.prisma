@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model Blog {
-  id       Int     @id @default(autoincrement())
+  id       String     @id @default(uuid())
   topic    String?
   genre    String?
   fullText String?
@@ -19,7 +19,8 @@ model Blog {
 }
 
 model Advertisment {
-  id                Int      @id @default(autoincrement())
+   id       String     @id @default(uuid())
+  topic    String?
   title             String?
   miniTitle         String?
   date              String?
@@ -31,7 +32,7 @@ model Advertisment {
 }
 
 model Event {
-  id          Int     @id @default(autoincrement())
+   id       String     @id @default(uuid())
   title       String?
   subtitle    String?
   date        String?
@@ -39,21 +40,21 @@ model Event {
 }
 
 model GalleryImages {
-  id         Int       @id @default(autoincrement())
+   id       String     @id @default(uuid())
   imageName  String?
   src        String
   category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId Int?
+  categoryId String?
 }
 
 model Category {
-  id         Int             @id @default(autoincrement())
+ id       String     @id @default(uuid())
   name       String?         @unique
   imagesList GalleryImages[]
 }
 
 model KidsToSponsor {
-  id            Int     @id @default(autoincrement())
+ id       String     @id @default(uuid())
   name          String?
   gender        String?
   age           Int?
@@ -67,7 +68,7 @@ model KidsToSponsor {
 }
 
 model TeamMembers {
-  id          Int     @id @default(autoincrement())
+ id       String     @id @default(uuid())
   name        String?
   position    String?
   description String?
@@ -75,7 +76,7 @@ model TeamMembers {
 }
 
 model Testimonies {
-  id       Int     @id @default(autoincrement())
+ id       String     @id @default(uuid())
   name     String?
   position String?
   fullText String?
