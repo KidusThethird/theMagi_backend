@@ -47,7 +47,17 @@ router.patch("/:id", async (req, res, next) => {
 
 //delete Blog
 router.delete("/:id", async (req, res, next) => {
-  res.send({ message: "blog delete page " });
+  try {
+    const { id } = req.params;
+    deleteBlog = await prisma.blog.delete({
+      where: {
+        id: id,
+      },
+    });
+    res.json(deleteBlog);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
