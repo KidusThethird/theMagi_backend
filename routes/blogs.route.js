@@ -42,7 +42,18 @@ router.post("/", async (req, res, next) => {
 
 //Update blog
 router.patch("/:id", async (req, res, next) => {
-  res.send({ message: "blog patch page " });
+  try {
+    const { id } = req.params;
+    const updateBlog = await prisma.blog.update({
+      where: {
+        id: id,
+      },
+      data: req.body,
+    });
+    res.json(updateBlog);
+  } catch (error) {
+    next(error);
+  }
 });
 
 //delete Blog
