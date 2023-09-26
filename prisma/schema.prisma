@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Blog {
-  id       String     @id @default(uuid())
+  id       String  @id @default(uuid())
   topic    String?
   genre    String?
   fullText String?
@@ -19,8 +19,8 @@ model Blog {
 }
 
 model Advertisment {
-   id       String     @id @default(uuid())
-  topic    String?
+  id                String   @id @default(uuid())
+  topic             String?
   title             String?
   miniTitle         String?
   date              String?
@@ -32,7 +32,7 @@ model Advertisment {
 }
 
 model Event {
-   id       String     @id @default(uuid())
+  id          String  @id @default(uuid())
   title       String?
   subtitle    String?
   date        String?
@@ -40,7 +40,7 @@ model Event {
 }
 
 model GalleryImages {
-   id       String     @id @default(uuid())
+  id         String    @id @default(uuid())
   imageName  String?
   src        String
   category   Category? @relation(fields: [categoryId], references: [id])
@@ -48,13 +48,13 @@ model GalleryImages {
 }
 
 model Category {
- id       String     @id @default(uuid())
+  id         String          @id @default(uuid())
   name       String?         @unique
   imagesList GalleryImages[]
 }
 
 model KidsToSponsor {
- id       String     @id @default(uuid())
+  id            String  @id @default(uuid())
   name          String?
   gender        String?
   age           Int?
@@ -68,7 +68,7 @@ model KidsToSponsor {
 }
 
 model TeamMembers {
- id       String     @id @default(uuid())
+  id          String  @id @default(uuid())
   name        String?
   position    String?
   description String?
@@ -76,8 +76,29 @@ model TeamMembers {
 }
 
 model Testimonies {
- id       String     @id @default(uuid())
+  id       String  @id @default(uuid())
   name     String?
   position String?
   fullText String?
+}
+
+model Volunteers {
+  id          String  @id @default(uuid())
+  fullname    String?
+  email       String?
+  gender      String?
+  phoneNumber String?
+  country     String?
+  city        String?
+  subCity     String?
+  profession  String?
+  employer    String?
+  moreInfo    String?
+}
+
+model messages {
+  id      String  @id @default(uuid())
+  name    String?
+  subject String?
+  message String?
 }
