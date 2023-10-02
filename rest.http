@@ -6,12 +6,15 @@ GET http://localhost:3000/blogs/
 
 ###
 
-POST http://localhost:3000/api/blogs
+POST http://localhost:5000/blogs
 Content-Type: application/json
 
 {
-    "topic" : "Blog One Topic",  
+    "topic" : "Blog Six Topic",  
     "genre" : "a nice genre" ,   
     "fullText" : "a full text from post request",
     "image" : "imagelink001"    
 }
+
+###
+Delete http://localhost:5000/blogs/6
